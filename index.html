@@ -9,21 +9,29 @@
 <body>
     <h1>共電費計算器</h1>
 
-    <label>你的電表起始度數：</label>
-    <input type="number" id="myStart"><br>
-
-    <label>你的電表結束度數：</label>
-    <input type="number" id="myEnd"><br>
-
-    <label>整棟樓總電費（元）：</label>
-    <input type="number" id="totalCost"><br>
-
+    <h2>整棟樓資訊</h2>
+    <label>整棟總度數：</label>
+    <input type="number" id="buildingUsage" placeholder="請輸入整棟總度數"><br>
+    <label>總電費（元）：</label>
+    <input type="number" id="totalCost" placeholder="請輸入金額"><br>
     <label>總人數：</label>
-    <input type="number" id="people"><br>
+    <input type="number" id="people" placeholder="請輸入人數"><br>
+
+    <h2>1F 房間</h2>
+    <label>1F 起始度數：</label>
+    <input type="number" id="room1FStart" placeholder="請輸入起始度數"><br>
+    <label>1F 結束度數：</label>
+    <input type="number" id="room1FEnd" placeholder="請輸入結束度數"><br>
+
+    <h2>1B 房間</h2>
+    <label>1B 起始度數：</label>
+    <input type="number" id="room1BStart" placeholder="請輸入起始度數"><br>
+    <label>1B 結束度數：</label>
+    <input type="number" id="room1BEnd" placeholder="請輸入結束度數"><br>
 
     <button onclick="calculate()">計算</button>
 
-    <h2 id="result"></h2>
+    <div id="result"></div>
 
     <script src="script.js"></script>
 </body>
