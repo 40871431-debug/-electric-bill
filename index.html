@@ -9,11 +9,13 @@
 <body>
     <h1>共電費計算器</h1>
 
-    <label>選擇模式：</label>
-    <select id="mode" onchange="switchMode()">
-        <option value="normal">平常模式</option>
-        <option value="summer">暑假模式</option>
-    </select>
+    <div class="mode-selector">
+        <label for="mode">選擇模式：</label>
+        <select id="mode" onchange="switchMode()">
+            <option value="normal">平常模式</option>
+            <option value="summer">暑假模式</option>
+        </select>
+    </div>
 
     <!-- 平常模式 -->
     <div id="normalMode">

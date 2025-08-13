@@ -27,15 +27,21 @@ function calculateNormal() {
     }
 
     let pricePerUnit = totalCost / totalUsage;
-    let cost1F = (room1FEnd - room1FStart) * pricePerUnit + 100;
-    let cost1B = (room1BEnd - room1BStart) * pricePerUnit + 100;
-    let publicCost = (totalCost - (cost1F  + cost1B )) / people;
+    // 計算原始費用
+    let cost1F_raw = (room1FEnd - room1FStart) * pricePerUnit + 100;
+    let cost1B_raw = (room1BEnd - room1BStart) * pricePerUnit + 100;
+    let publicCost_raw = (totalCost - (cost1F_raw + cost1B_raw)) / people;
+
+    // 無條件進位
+    const cost1F = Math.ceil(cost1F_raw);
+    const cost1B = Math.ceil(cost1B_raw);
+    const publicCost = Math.ceil(publicCost_raw);
 
     document.getElementById('result').innerText =
         `【平常模式】\n` +
-        `1F 電費：${cost1F.toFixed(2)} 元\n` +
-        `1B 電費：${cost1B.toFixed(2)} 元\n` +
-        `每人應付公用電費：${publicCost.toFixed(2)} 元`;
+        `1F 電費：${cost1F} 元\n` +
+        `1B 電費：${cost1B} 元\n` +
+        `每人應付公用電費：${publicCost} 元`;
 }
 
 // 暑假模式計算 (最終版)
@@ -83,25 +89,32 @@ function calculateSummer() {
         return;
     }
 
-    // 計算各房間費用
-    const cost1FOld = totalSummerCost * (room1FUsageOld / totalSummerUsage) + 100;
-    const cost1BOld = totalSummerCost * (room1BUsageOld / totalSummerUsage) + 100;
-    const cost1FNew = totalSummerCost * (room1FUsageNew / totalSummerUsage) + 100;
-    const cost1BNew = totalSummerCost * (room1BUsageNew / totalSummerUsage) + 100;
+    // 計算各房間費用 (原始值)
+    const cost1FOld_raw = totalSummerCost * (room1FUsageOld / totalSummerUsage) + 100;
+    const cost1BOld_raw = totalSummerCost * (room1BUsageOld / totalSummerUsage) + 100;
+    const cost1FNew_raw = totalSummerCost * (room1FUsageNew / totalSummerUsage) + 100;
+    const cost1BNew_raw = totalSummerCost * (room1BUsageNew / totalSummerUsage) + 100;
 
-    // 計算公用電費
-    const totalPrivateCostVariable = cost1FOld+cost1BOld+cost1FNew+cost1BNew;
+    // 計算公用電費 (原始值)
+    const totalPrivateCostVariable = cost1FOld_raw+cost1BOld_raw+cost1FNew_raw+cost1BNew_raw;
     const totalPublicCost = totalSummerCost - totalPrivateCostVariable;
-    const publicCostPerPerson = totalPublicCost / (peopleOld + peopleNew);
+    const publicCostPerPerson_raw = totalPublicCost / (peopleOld + peopleNew);
+
+    // 無條件進位
+    const cost1FOld = Math.ceil(cost1FOld_raw);
+    const cost1BOld = Math.ceil(cost1BOld_raw);
+    const cost1FNew = Math.ceil(cost1FNew_raw);
+    const cost1BNew = Math.ceil(cost1BNew_raw);
+    const publicCostPerPerson = Math.ceil(publicCostPerPerson_raw);
 
     // 顯示結果
     document.getElementById('result').innerText =
         `【暑假模式】\n` +
         `--- 房間費用 ---\n` +
-        `1F 退租期間電費：${cost1FOld.toFixed(2)} 元\n` +
-        `1B 退租期間電費：${cost1BOld.toFixed(2)} 元\n` +
-        `1F 新住期間電費：${cost1FNew.toFixed(2)} 元\n` +
-        `1B 新住期間電費：${cost1BNew.toFixed(2)} 元\n\n` +
+        `1F 退租期間電費：${cost1FOld} 元\n` +
+        `1B 退租期間電費：${cost1BOld} 元\n` +
+        `1F 新住期間電費：${cost1FNew} 元\n` +
+        `1B 新住期間電費：${cost1BNew} 元\n\n` +
         `--- 公用電費 ---\n` +
-        `每人應付公用電費：${publicCostPerPerson.toFixed(2)} 元`;
+        `每人應付公用電費(含6月退租跟7月新住)：${publicCostPerPerson} 元`;
 }

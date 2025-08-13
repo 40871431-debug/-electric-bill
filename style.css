@@ -20,17 +20,21 @@ h2 {
 }
 
 label {
-    display: inline-block;
-    width: 150px;
-    margin-top: 10px;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
 }
 
 input {
-    width: calc(100% - 160px);
+    display: block;
+    width: 80%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin: 5px auto 10px auto;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 button {
@@ -55,4 +59,24 @@ button:hover {
     background-color: #e9ecef;
     border-radius: 4px;
     white-space: pre-wrap;
+}
+
+.mode-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mode-selector label {
+    width: auto; /* Override general label style */
+    margin-right: 5px;
+    margin-top: 0; /* Reset margin-top from general label style */
+    text-align: right;
+}
+
+.mode-selector select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
