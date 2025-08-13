@@ -28,8 +28,8 @@ function calculateNormal() {
 
     let pricePerUnit = totalCost / totalUsage;
     // 計算原始費用
-    let cost1F_raw = (room1FEnd - room1FStart) * pricePerUnit + 100;
-    let cost1B_raw = (room1BEnd - room1BStart) * pricePerUnit + 100;
+    let cost1F_raw = (room1FEnd - room1FStart) * pricePerUnit + 150;
+    let cost1B_raw = (room1BEnd - room1BStart) * pricePerUnit + 150;
     let publicCost_raw = (totalCost - (cost1F_raw + cost1B_raw)) / people;
 
     // 無條件進位
@@ -44,7 +44,7 @@ function calculateNormal() {
         `每人應付公用電費：${publicCost} 元`;
 }
 
-// 暑假模式計算 (最終版)
+// 暑假模式計算 
 function calculateSummer() {
     // 獲取所有輸入值
     const totalSummerCost = parseFloat(document.getElementById('totalSummerCost').value);
@@ -90,10 +90,10 @@ function calculateSummer() {
     }
 
     // 計算各房間費用 (原始值)
-    const cost1FOld_raw = totalSummerCost * (room1FUsageOld / totalSummerUsage) + 100;
-    const cost1BOld_raw = totalSummerCost * (room1BUsageOld / totalSummerUsage) + 100;
-    const cost1FNew_raw = totalSummerCost * (room1FUsageNew / totalSummerUsage) + 100;
-    const cost1BNew_raw = totalSummerCost * (room1BUsageNew / totalSummerUsage) + 100;
+    const cost1FOld_raw = totalSummerCost * (room1FUsageOld / totalSummerUsage) + 70;
+    const cost1BOld_raw = totalSummerCost * (room1BUsageOld / totalSummerUsage) + 70;
+    const cost1FNew_raw = totalSummerCost * (room1FUsageNew / totalSummerUsage) + 70;
+    const cost1BNew_raw = totalSummerCost * (room1BUsageNew / totalSummerUsage) + 70;
 
     // 計算公用電費 (原始值)
     const totalPrivateCostVariable = cost1FOld_raw+cost1BOld_raw+cost1FNew_raw+cost1BNew_raw;
