@@ -8,7 +8,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: #333;
     text-align: center;
 }
@@ -54,4 +54,5 @@ button:hover {
     padding: 15px;
     background-color: #e9ecef;
     border-radius: 4px;
+    white-space: pre-wrap;
 }

@@ -9,27 +9,80 @@
 <body>
     <h1>共電費計算器</h1>
 
-    <h2>整棟樓資訊</h2>
-    <label>整棟總度數：</label>
-    <input type="number" id="buildingUsage" placeholder="請輸入整棟總度數"><br>
-    <label>總電費（元）：</label>
-    <input type="number" id="totalCost" placeholder="請輸入金額"><br>
-    <label>總人數：</label>
-    <input type="number" id="people" placeholder="請輸入人數"><br>
+    <label>選擇模式：</label>
+    <select id="mode" onchange="switchMode()">
+        <option value="normal">平常模式</option>
+        <option value="summer">暑假模式</option>
+    </select>
 
-    <h2>1F 房間</h2>
-    <label>1F 起始度數：</label>
-    <input type="number" id="room1FStart" placeholder="請輸入起始度數"><br>
-    <label>1F 結束度數：</label>
-    <input type="number" id="room1FEnd" placeholder="請輸入結束度數"><br>
+    <!-- 平常模式 -->
+    <div id="normalMode">
+        <h2>整棟樓資訊</h2>
+        <label>總度數：</label>
+        <input type="number" id="totalUsage" placeholder="請輸入度數"><br>
+        <label>總電費（元）：</label>
+        <input type="number" id="totalCost" placeholder="請輸入金額"><br>
+        <label>總人數：</label>
+        <input type="number" id="people" placeholder="請輸入人數"><br>
 
-    <h2>1B 房間</h2>
-    <label>1B 起始度數：</label>
-    <input type="number" id="room1BStart" placeholder="請輸入起始度數"><br>
-    <label>1B 結束度數：</label>
-    <input type="number" id="room1BEnd" placeholder="請輸入結束度數"><br>
+        <h2>1F 房間</h2>
+        <label>起始度數：</label>
+        <input type="number" id="room1FStart"><br>
+        <label>結束度數：</label>
+        <input type="number" id="room1FEnd"><br>
 
-    <button onclick="calculate()">計算</button>
+        <h2>1B 房間</h2>
+        <label>起始度數：</label>
+        <input type="number" id="room1BStart"><br>
+        <label>結束度數：</label>
+        <input type="number" id="room1BEnd"><br>
+
+        <button onclick="calculateNormal()">計算</button>
+    </div>
+
+    <!-- 暑假模式 -->
+    <div id="summerMode" style="display:none;">
+        <h2>整棟樓資訊（暑假模式）</h2>
+        <h3>退租同學</h3>
+        <label>退租同學人數：</label>
+        <input type="number" id="peopleOld"><br>
+
+        <h3>新住同學</h3>
+        <label>暑假總電費（元）：</label>
+        <input type="number" id="totalSummerCost" placeholder="請輸入總金額"><br>
+        <label>暑假總用電度數：</label>
+        <input type="number" id="totalSummerUsageInput" placeholder="請輸入總度數"><br>
+        <label>新住同學人數：</label>
+        <input type="number" id="peopleNew"><br>
+
+        <h2>1F 房間</h2>
+        <h3>退租同學</h3>
+        <label>起始度數：</label>
+        <input type="number" id="room1FStartOld"><br>
+        <label>結束度數：</label>
+        <input type="number" id="room1FEndOld" oninput="updateNewStart('1F')"><br>
+
+        <h3>新住同學</h3>
+        <label>起始度數：</label>
+        <input type="number" id="room1FStartNew"><br>
+        <label>結束度數：</label>
+        <input type="number" id="room1FEndNew"><br>
+
+        <h2>1B 房間</h2>
+        <h3>退租同學</h3>
+        <label>起始度數：</label>
+        <input type="number" id="room1BStartOld"><br>
+        <label>結束度數：</label>
+        <input type="number" id="room1BEndOld" oninput="updateNewStart('1B')"><br>
+
+        <h3>新住同學</h3>
+        <label>起始度數：</label>
+        <input type="number" id="room1BStartNew"><br>
+        <label>結束度數：</label>
+        <input type="number" id="room1BEndNew"><br>
+
+        <button onclick="calculateSummer()">計算</button>
+    </div>
 
     <div id="result"></div>
 
